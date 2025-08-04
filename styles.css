@@ -24,3 +24,33 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+a.btn {
+    display: inline-block;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: aliceblue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#post-list {
+    max-width: 800px;
+    margin: 20px auto; 
+}
+
+.post-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 40px;
+}
