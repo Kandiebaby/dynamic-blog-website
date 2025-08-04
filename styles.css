@@ -24,3 +24,27 @@ a {
 a:hover {
     text-decoration: underline;
 }
+
+a.btn {
+    display: subgrid;
+    width: fit-content;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: aliceblue;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#post-list {
+    max-width: 800px;
+    margin: 20px auto; 
+}
+
+.post-item {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(red, green, blue, alpha);
+}
