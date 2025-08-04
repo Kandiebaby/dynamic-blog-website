@@ -1,0 +1,22 @@
+Project: Dynamic Blog Website
+
+Pages:
+- index.html (Homepage)
+- new-post.html (Create Post)
+- post.html (View/Edit Post)
+
+
+
+Features:
+-Styling via styles.css
+JavaScript for CRUD operations:
+- Create: form to add a new blog post 
+- Read: Display posts
+-Update: Edit a blog post
+-Delete: Remove a blog post
+
+- Store and retrieve blog post from local storage
+
+- Document progress and commit regularly 
+
+-Ensure blog website is reponsive on different devices
