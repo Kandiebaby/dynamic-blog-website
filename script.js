@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let postDiv = document.createElement("div");
     postDiv.className = "post-item";
     postDiv.innerHTML = `
-    <h2>${post.title}</h2>
+    <h3>${post.title}</h3>
     <p>${post.content}</p>
     <a href="post.html?index=${index}">View/Edit</a>
      `;
