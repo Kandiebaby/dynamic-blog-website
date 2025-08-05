@@ -100,7 +100,8 @@ window.location.replace("index.html");
 
 document.addEventListener("DOMContentLoaded", function() {
     let postDetails = document.getElementById("post-details");
-    let editBUTTON = document.getElementById("edit-btn");
+    let editButton = document.getElementById("edit-btn");
+    let deleteButton = document.getElementById("delete-btn");
 
     let postId = new URLSearchParams(window.location.search).get('id');
     let index = parseInt(postId, 10);
@@ -143,6 +144,14 @@ document.addEventListener("DOMContentLoaded", function() {
              });
 
 
+         });
+
+         deleteButton.addEventListener("click", function () {
+            if (confirm("Delete this post?")) {
+              posts.splice(index, 1);
+              localStorage.setItem("posts", JSON.stringify(posts));
+                window.location.replace("index.html");
+            }
          });
 
     } else {
