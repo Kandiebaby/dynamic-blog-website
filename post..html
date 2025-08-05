@@ -14,9 +14,22 @@
 
     <main>
         <div id="post-details">
+            <h2 id="post-title"></h2>
+            <p id="post-content"></p>
+            <button id="edit-button">Edit Post</button>
+        </div>
+
+        <div id="edit-form" styles="display:none;">
+            <h3Edit Post></h3>
+            <label for="edit-title">Title</label>
+            <input type="text" id="edit-title"><br><br>
+            
+            <label for="edit-content">Content:</label>
+            <textarea id="edit-content" rows="10"></textarea><br><br>
 
         </div>
         <button id="edit-btn">Edit Post</button>
+        <button id="save-edit">Save Changes</button>
     </main>
 
     <footer>

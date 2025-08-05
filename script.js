@@ -1,22 +1,37 @@
 document.addEventListener("DOMContentLoaded", function () {
   let postList = document.getElementById("post-list");
   
-  let posts = JSON.parse(localStorage.getItem("blogPosts")) || [];
+  let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
   if (posts.length === 0) {
-    postList.innerHTML = "<p>No blog posts found.</p>";
+    postList.innerHTML = "<p>No posts found.</p>";
     return;
   }
 
   posts.forEach((post, index) => {
-    let postDiv = document.createElement("div");
-    postDiv.className = "post-item";
-    postDiv.innerHTML = `
-    <h3>${post.title}</h3>
-    <p>${post.content}</p>
-    <a href="post.html?index=${index}">View/Edit</a>
-     `;
-     postList.appendChild(postDiv);
+    let postItem = document.createElement("div");
+    postItem.className.add("post-item");
+
+    let postTitle = document.createElement("h3");
+
+    postTitle.inner = `<a href="post.html?id=${index}">${post.title}</a>`;
+
+    let postContent = document.createElement("p");
+    postContent.textContent = post.content;
+
+    postItem.appendChild(postTitle);
+    postItem.appendChild(postContent);
+
+    if (post.image) {
+        let postImage = document.createElement("img");
+        postImage.src = post.image;
+        postImage.alt = "Post Image";
+        postItem.appendChild(postImage);
+    }
+    
+
+    
+     postList.appendChild(postItem);
   });
 });
 
@@ -37,15 +52,15 @@ document.addEventListener("DOMContentLoaded", function() {
         let postContent = document.createElement("p");
         postContent.textContent = post.content;
 
+        postItem.appendChild(postTitle);
+        postItem.appendChild(postContent);
+
         if (post.image) {
           let postImage = document.createElement("img");
           postImage.src = post.image;
           postImage.alt = "Post Image";  
+          postItem.appendChild(postImage);
         }
-
-        postItem.appendChild(postTitle);
-        postItem.appendChild(postContent);
-        if (post.image) postItem.appendChild(postImage);
 
         postList.appendChild(postItem);
     });
@@ -87,10 +102,11 @@ document.addEventListener("DOMContentLoaded", function() {
     let postDetails = document.getElementById("post-details");
     let editBUTTON = document.getElementById("edit-btn");
 
-    let postID = new URLSearchParams(window.location.search).get('id');
+    let postId = new URLSearchParams(window.location.search).get('id');
+    let index = parseInt(postId, 10);
 
     let posts = JSON.parse(localStorage.getItem('posts')) || [];
-    let post = posts[postId];
+    let post = posts[index];
 
     if (post) {
         postDetails.innerHTML = `
@@ -102,24 +118,24 @@ document.addEventListener("DOMContentLoaded", function() {
             let editForm = `
             <h3>Edit Post</h3>
             <label for="edit-title">Title:</label>
-            <input type="text" id="edit-title value="${post.title}" required>
+            <input type="text" id="edit-title" value="${post.title}" required>
             <label for= "edit-content">Content:</label>
             <textarea id= "edit-content" required>${post.content}</textarea>
-            <button id="save-btn">SaveChanges</button>
+            <button id="save-btn">Save Changes</button>
              `;
 
              postDetails.innerHTML = editForm;
 
              let saveButton = document.getElementById("save-btn");
              saveButton.addEventListener('click', function () {
-                let newTitle = document.getElementById('edit-title');
-                let newContent = document.getElementById('edit-content');
+                let newTitle = document.getElementById('edit-title').value;
+                let newContent = document.getElementById('edit-content').value;
 
                 post.title = newTitle;
                 post.content = newContent;
 
-                post[postId] = post;
-                localStorage.setitem('posts', JSON.stringify(posts));
+                posts[index] = post;
+                localStorage.setItem('posts', JSON.stringify(posts));
 
                 window.location.replace("index.html");
 
