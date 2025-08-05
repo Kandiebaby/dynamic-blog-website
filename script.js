@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-  // --- Display posts on index.html ---
+  
   let postList = document.getElementById("post-list");
   let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
@@ -32,6 +32,17 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
+
+  let postId = new URLSearchParams(window.location.search).get('id');
+  let index = parseInt(postId, 10);
+  
+
+  if (!isNaN(index) && index >= 0 && index < posts.length) {
+  let post = posts[index];
+  // Display post title and content here
+} else {
+  // Show "Post not found."
+}
 
   // --- Handle new post submission on new.html ---
   let postForm = document.getElementById("post-form");
