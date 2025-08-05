@@ -1,16 +1,25 @@
 
 document.addEventListener("DOMContentLoaded", function () {
   
-  let postList = document.getElementById("post-list");
   let posts = JSON.parse(localStorage.getItem("posts")) || [];
+  let postList = document.getElementById("post-list");
 
   if (postList) {
     if (posts.length === 0) {
       postList.innerHTML = "<p>No posts found.</p>";
+      return;
+
     } else {
       posts.forEach((post, index) => {
         let postItem = document.createElement("div");
         postItem.classList.add("post-item");
+
+         let postLink = document.createElement("a");
+    postLink.href = `post.html?id=0${index}`;  
+    postLink.textContent = post.title;
+
+    postItem.appendChild(postLink);
+    postList.appendChild(postItem);
 
         let postTitle = document.createElement("h3");
         postTitle.innerHTML = `<a href="post.html?id=${index}">${post.title}</a>`;
